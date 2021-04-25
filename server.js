@@ -1,9 +1,19 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
-const departmentQueries = require("./Queries/departmentQueries");
-const roleQueries = require("./Queries/roleQueries");
-const employeeQueries = require("./Queries/employeeQueries");
+const { viewDepts, addDept } = require("./Queries/departmentQueries.js");
+const { viewRoles, addRole, updateEmpRole } = require("./Queries/roleQueries");
+const { viewEmployees, addEmployee } = require("./Queries/employeeQueries");
+const {
+  updateEmpMan,
+  viewEmployeeMan,
+  viewEmployeeDept,
+  deleteDept,
+  deleteRole,
+  deleteEmployee,
+  viewUtilizedBud,
+} = require("./Queries/bonusQueries");
+
 require("dotenv").config();
 
 // create the connection to database
@@ -17,7 +27,7 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) throw err;
-  console.log("connected as id" + connection.threadId);
+  console.log("connected as id " + connection.threadId);
   mainPrompt();
 });
 
@@ -49,31 +59,58 @@ async function mainPrompt() {
       const { menu } = choice;
 
       if (menu === "View all Departments") {
-        departmentQueries.viewDepts();
+        viewDepts();
       }
 
       if (menu === "View all Roles") {
-        roleQueries.viewRoles();
+        viewRoles();
       }
 
       if (menu === "View all Employees") {
-        employeeQueries.viewEmployees();
+        viewEmployees();
       }
 
       if (menu === "Add a Department") {
-        departmentQueries.addDept();
+        addDept();
       }
 
       if (menu === "Add a Role") {
-        roleQueries.addRole();
+        addRole();
       }
 
       if (menu === "Add an Employee") {
-        employeeQueries.addEmployee();
+        addEmployee();
       }
 
       if (menu === "Update an Employee Role") {
-        employeeQueries.updateEmpRole();
+        updateEmpRole();
+      }
+      if (menu === "Update Employee Managers") {
+        updateEmpMan();
+      }
+
+      if (menu === "View Employees by Manager") {
+        viewEmployeeMan();
+      }
+
+      if (menu === "View Employees by Department") {
+        viewEmployeeDept();
+      }
+
+      if (menu === "Delete a Department") {
+        deleteDept();
+      }
+
+      if (menu === "Delete a Role") {
+        deleteRole();
+      }
+
+      if (menu === "Delete an Employee") {
+        deleteEmployee();
+      }
+
+      if (menu === "View Total Utilized Budget by Department") {
+        viewUtilizedBud();
       }
       if (menu === "Exit") {
         console.log("BYE");
