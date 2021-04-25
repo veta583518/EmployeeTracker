@@ -1,7 +1,7 @@
 /* Drop Database*/
-DROP DATABASE IF EXISTS employees_db;
-CREATE DATABASE employees_db;
-USE employees_db;
+DROP DATABASE IF EXISTS employeesDB;
+CREATE DATABASE employeesDB;
+USE employeesDB;
 /* Drop tables */
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS roles;

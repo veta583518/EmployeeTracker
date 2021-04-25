@@ -26,12 +26,12 @@ INSERT INTO employees (
     )
 VALUES ('Ida', 'Martin', 1, NULL),
     ('Eddie', 'Taylor', 3, NULL),
-    ('Edwin', 'Summers', 4, 3),
+    ('Edwin', 'Summers', 4, 2),
     ('LaKeya', 'Summers', 8, NULL),
     ('Veronica', 'Williams', 6, NULL),
-    ('Brittany', 'Cameron', 7, 6),
-    ('Kerrick', 'Duckett', 9, 6),
-    ('SamQuia', 'Parker', 10, 8),
-    ('Lynisha', 'Booker', 5, 8),
-    ('Elisa', 'Denton', 11, 3),
-    ('Eddrick', 'Taylor', 2, 1);
+    ('Brittany', 'Cameron', 7, 5),
+    ('Lee', 'Williams', 9, 5),
+    ('SamQuia', 'Parker', 10, 4),
+    ('Lynisha', 'Booker', 5, 4),
+    ('Elisa', 'Denton', 11, 2),
+    ('Kerrick', 'Duckett', 2, 1);
