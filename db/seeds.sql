@@ -5,7 +5,7 @@ VALUES ('Sales'),
     ('Finance'),
     ('Legal');
 /* Fill role table */
-INSERT INTO roles (title, salary, dept_id)
+INSERT INTO roles (title, salary, department_id)
 VALUES ('Sales Lead', 100000, 1),
     ('Salesperson', 80000, 1),
     ('Lead Engineer', 150000, 2),
