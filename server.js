@@ -1,12 +1,12 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
 const Database = require("./database");
 require("dotenv").config();
 
 // create the connection to database
-// Database is a class
-const connection = new Database({
+// Database is class
+const { connection } = new Database({
   host: "localhost",
   port: "3306",
   user: "root",
@@ -59,7 +59,7 @@ mainPrompt = async () => {
       break;
     }
     case "Add a Department": {
-      await addDept();
+      await addDepartment();
       break;
     }
     case "Add a Role": {
@@ -112,6 +112,7 @@ mainPrompt = async () => {
 // get arrays for choices in prompts --------------------------------------------------------------------------------------------
 getDepartmentNames = async () => {
   const sql = `SELECT dept_name FROM departments `;
+  const rows = await connection.query(sql, args);
   let departments = [];
   for (let i of sql) {
     departments.push(i.dept_name);
