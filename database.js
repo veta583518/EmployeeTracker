@@ -6,21 +6,23 @@ class Database {
   }
   query(sql, args) {
     return new Promise((resolve, reject) => {
-      this.connection.query(sql, args, (err, res) => {
+      this.connection.query(sql, args, (err, rows) => {
         if (err) {
-          console.log(err.sql);
-          return reject(err);
+          reject(err);
+        } else {
+          resolve(rows);
         }
-        resolve();
-        console.table(res);
       });
     });
   }
   close() {
     return new Promise((resolve, reject) => {
       this.connection.end((err) => {
-        if (err) return reject(err);
-        resolve();
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
       });
     });
   }

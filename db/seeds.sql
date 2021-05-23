@@ -16,7 +16,7 @@ VALUES ('Sales Lead', 100000, 1),
     ('Accounting Lead', 180000, 3),
     ('Paralegal', 100000, 4),
     ('Financial Analyst', 1500000, 3),
-    ('Junior Developer', 100000, 3);
+    ('Junior Developer', 100000, 2);
 /* Fill employees table */
 INSERT INTO employees (
         first_name,
