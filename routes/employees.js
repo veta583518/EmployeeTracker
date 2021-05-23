@@ -1,14 +1,15 @@
 // Employee Queries ---------------------------------------------------------------------------------------------------------------------------------
 // View all Employees ------------------------------------------------------------
 viewEmployees = () => {
-  let sql = `SELECT 
-          id, first_name, last_name, title, dept_name, salary, CONCAT(first_name, " ", last_name) AS manager
-         FROM 
-          employees
-         JOIN 
-          roles ON role_id = roles.id
-         JOIN 
-          departments ON department_id = departments.id `;
+  // let sql = `SELECT
+  //         id, first_name, last_name, title, dept_name, salary, CONCAT(first_name, " ", last_name) AS manager
+  //        FROM
+  //         employees
+  //        JOIN
+  //         roles ON role_id = roles.id
+  //        JOIN
+  //         departments ON department_id = departments.id `;
+  let sql = `SELECT * FROM employees`;
   const rows = connection.query(sql);
   console.table(rows);
 };

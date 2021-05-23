@@ -13,7 +13,9 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "migrate": "mysql -u root -pWilliams82717! employeesdb < ./db/schema.sql",
+    "seed": "mysql -u root -pWilliams82717! employeesdb < ./db/seeds.sql"
   },
   "repository": {
     "type": "git",
