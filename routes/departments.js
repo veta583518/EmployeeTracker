@@ -1,34 +1,4 @@
 // Department Queries -----------------------------------------------------------------
-// View all Departments ---------------------------------------------------------------
-viewDepts = () => {
-  let sql = `SELECT * FROM departments`;
-  const rows = connection.query(sql);
-  console.table(rows);
-};
-
-// Add Department ---------------------------------------------------------------------
-addDepartment = () => {
-  const response = inquirer.prompt([
-    {
-      type: "input",
-      name: "departmentName",
-      message: "What is the name of the new Department?",
-      validate(departmentNameInput) {
-        if (departmentNameInput) {
-          return true;
-        } else {
-          console.log("Invalid Entry! Please enter the department name.");
-          return false;
-        }
-      },
-    },
-  ]);
-  const departmentName = response.departmentName;
-  let sql = `INSERT INTO departments (dept_name) VALUES (?) `;
-  const args = [departmentName];
-  const rows = connection.query(sql, args);
-  console.log(`Added new department ${departmentName}!`);
-};
 
 // Delete a Department ----------------------------------------------
 deleteDept = () => {

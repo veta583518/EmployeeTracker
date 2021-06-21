@@ -139,14 +139,13 @@ addDepartment = () => {
   const dept_name = response.departmentName;
   let sql = `INSERT INTO departments (dept_name) VALUES (?) `;
   const args = [dept_name];
-  // const rows = connection.query(sql, args);
   return connection
     .promise()
     .query(sql, args)
-    .then((dept_name) => {
-      console.log("\n");
-      console.log(`Added new ${dept_name} department!`);
-      mainPrompt();
+    .then(() => {
+      console.log("\n"),
+        console.log(`Added new ${dept_name} department!`),
+        mainPrompt();
     });
 };
 

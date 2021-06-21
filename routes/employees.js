@@ -14,59 +14,6 @@ viewEmployees = () => {
   console.table(rows);
 };
 
-// Add Employee -----------------------------------------------------------------------
-addEmployee = () => {
-  const roles = getRoleNames();
-  const managers = getManagerNames();
-  const role_id = getRoleId();
-  const manager_id = getManagerId();
-  const response = inquirer.prompt([
-    {
-      type: "input",
-      name: "first_name",
-      message: "What is the employee's first name?",
-      validate(first_nameInput) {
-        if (first_nameInput) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-    },
-    {
-      type: "input",
-      name: "last_name",
-      message: "What is the new employee's last name?",
-      validate(last_nameInput) {
-        if (last_nameInput) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-    },
-    {
-      type: "list",
-      name: "roles",
-      message: "What is the employee's job title?",
-      choices: [...roles],
-    },
-    {
-      type: "list",
-      name: "managers",
-      message: "Who does the employee report to?",
-      choices: [...managers],
-    },
-  ]);
-  const first_name = response.first_name;
-  const last_name = response.last_name;
-  let sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)
-      VALUES (?,?,?,?)`;
-  const args = [first_name, last_name, role_id, manager_id];
-  const rows = connection.query(sql, args);
-  console.log(`Added employee ${first_name + " " + last_name}`);
-};
-
 // Delete an Employee ----------------------------------------------
 deleteEmployee = () => {
   const id = getEmployeeId();
@@ -83,37 +30,6 @@ deleteEmployee = () => {
   const args = [id];
   const rows = connection.query(sql, args);
   console.log(`${response.EmpDel} has been removed!`);
-};
-
-// Update Employee Role -------------------------------------------------------------
-updateEmployeeRole = () => {
-  const employees = getEmployees();
-  const response = inquirer.prompt([
-    {
-      type: "list",
-      name: "eRole",
-      message: "Which employee's role would you like to update?",
-      choices: [...employees],
-    },
-    {
-      type: "input",
-      name: "newRole",
-      message: "What is the employee's new position?",
-      validate(newRoleInput) {
-        if (newRoleInput) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-    },
-  ]);
-  const title = response.newRole;
-  const employee = response.eRole;
-  let sql = `UPDATE employees SET title = ? WHERE CONCAT(first_name, " ", last_name) AS employee =? INNER JOIN roles ON role_id = roles.id WHERE ?`;
-  const args = [title, employee];
-  const rows = connection.query(sql, args);
-  console.log(`Updated ${eRole}'s role to ${newRole}!`);
 };
 
 // Update Employee Manager --------------------------------------------
